@@ -1,7 +1,7 @@
 <div class="w-100">
-    <div class="list-group" dnd-sortable-container [sortableData]="wordList.items">
-        <div *ngFor="let item of wordList.items; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i" (onDragEnd)="dragEnd()">
-            {{ item }}
+    <div class="list-group" dnd-sortable-container [sortableData]="wordList">
+        <div *ngFor="let word of wordList; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i" (onDragEnd)="dragEnd()">
+            {{ word.item }}
         </div>
     </div>
 </div>

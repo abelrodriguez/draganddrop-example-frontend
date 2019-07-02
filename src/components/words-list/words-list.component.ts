@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Words } from '../../core/models/words.model';
+import { Word } from '../../core/models/word.model';
 import { WordsListService } from './words-list.service';
 
 @Component({
@@ -9,14 +9,14 @@ import { WordsListService } from './words-list.service';
 })
 export class WordsListComponent implements OnInit {
 
-    wordList: Words;
+    wordList: Word[];
 
     constructor(
         private wordsListService: WordsListService,
     ) { }
 
     ngOnInit() {
-        this.wordsListService.getWordList(1)
+        this.wordsListService.getWordsList()
             .subscribe(
                 data => { this.wordList = data; }
             );
