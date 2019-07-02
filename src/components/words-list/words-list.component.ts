@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Words } from '../../core/models/words.model';
+import { WordsListService } from './words-list.service';
 
 @Component({
     selector: 'app-words-list',
@@ -8,14 +9,17 @@ import { Words } from '../../core/models/words.model';
 })
 export class WordsListComponent implements OnInit {
 
-    wordList: Words = {
-        _id: 1,
-        items: ['gato', 'cosa', 'nada']
-    };
+    wordList: Words;
 
-    constructor() { }
+    constructor(
+        private wordsListService: WordsListService,
+    ) { }
 
     ngOnInit() {
+        this.wordsListService.getWordList(1)
+            .subscribe(
+                data => { this.wordList = data; }
+            );
     }
 
     dragEnd() {

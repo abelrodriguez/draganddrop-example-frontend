@@ -5,6 +5,7 @@ import { DndModule } from 'ng2-dnd';
 import { AppComponent } from './app.component';
 import { WordsListComponent } from '../components/words-list/words-list.component';
 import { WordsListModule } from '../components/words-list/words-list.module';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
     declarations: [
@@ -14,6 +15,7 @@ import { WordsListModule } from '../components/words-list/words-list.module';
     imports: [
         BrowserModule,
         DndModule.forRoot(),
+        CoreModule,
         WordsListModule
     ],
     providers: [],
