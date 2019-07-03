@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Word } from '../../core/models/word.model';
+import { Config } from '../../core/models/config.model';
 import { WordsListService } from './words-list.service';
+import { ConfigService } from '../../core/services/config.service';
 
 @Component({
     selector: 'app-words-list',
@@ -13,6 +15,7 @@ export class WordsListComponent implements OnInit {
 
     constructor(
         private wordsListService: WordsListService,
+        private configService: ConfigService,
     ) { }
 
     ngOnInit() {
@@ -23,6 +26,25 @@ export class WordsListComponent implements OnInit {
     }
 
     dragEnd() {
-        console.log(this.wordList);
+        const config: Config = {
+            _id: 1,
+            sort_items: this.wordList.map((word) => word._id)
+        };
+        this.configService.updateConfig(config)
+            .subscribe();
+    }
+
+    findAnagrama(anagramaBase) {
+        this.wordList.map(word => word.isAnagrama = false);
+        if (anagramaBase) {
+            this.wordsListService.getAnagramas(anagramaBase)
+                .subscribe(
+                    anagramaList => {
+                        anagramaList
+                            .map(key => this.wordList.find(list => list._id === key))
+                            .map(word => word.isAnagrama = true);
+                    }
+                );
+            }
     }
 }

@@ -1,6 +1,11 @@
+<div class="d-flex justify-content-center p-3 w-100">
+<div class="">
+    Anagrama: <input class="form-control" #anagramaInput type=text (keyup)="findAnagrama(anagramaInput.value)">
+</div></div>
 <div class="w-100">
     <div class="list-group" dnd-sortable-container [sortableData]="wordList">
-        <div *ngFor="let word of wordList; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i" (onDragEnd)="dragEnd()">
+        <div *ngFor="let word of wordList; let i = index" class="list-group-item"
+            [ngClass]="word.isAnagrama ? 'text-danger' : ''" dnd-sortable [sortableIndex]="i" (onDragEnd)="dragEnd()">
             {{ word.item }}
         </div>
     </div>

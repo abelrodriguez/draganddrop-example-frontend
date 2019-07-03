@@ -13,4 +13,8 @@ export class WordsListService {
     getWordsList(): Observable<Word[]> {
         return this.apiService.get(`words/`);
     }
+
+    getAnagramas(anagramaBase: string): Observable<number[]> {
+        return this.apiService.get(`anagramas/${anagramaBase}`);
+    }
 }
